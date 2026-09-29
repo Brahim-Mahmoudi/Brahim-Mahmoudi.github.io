@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found | Brahim Mahmoudi</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=PT+Sans:wght@400;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    try {
+      var savedTheme = localStorage.getItem("bm-theme");
+      if (savedTheme === "light" || savedTheme === "dark") document.documentElement.dataset.theme = savedTheme;
+    } catch (e) {}
+  </script>
+  <style>
+    .not-found { min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; text-align: center; }
+    .not-found .code { margin-bottom: 8px; font-family: var(--font-round); font-size: clamp(4rem, 16vw, 7rem); font-weight: 700; line-height: 1; background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .not-found p { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="not-found">
+    <div>
+      <p class="code">404</p>
+      <h1 class="section-title">This page doesn’t exist</h1>
+      <p>The link may be outdated. Everything is on the home page.</p>
+      <a class="btn btn-primary" href="/">Back to the home page</a>
+    </div>
+  </main>
+</body>
+</html>
