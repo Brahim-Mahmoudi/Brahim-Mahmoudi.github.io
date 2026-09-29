@@ -10,6 +10,9 @@ index.html            Page unique avec toutes les sections
 assets/css/style.css  Styles (les couleurs sont définies en haut du fichier)
 assets/js/main.js     Menu mobile, mode sombre, filtres, copie de citation, visionneuse d'images
 assets/img/           Images du site
+assets/img/photos/    Photos de la section Photography (versions web)
+tools/add-photo.sh    Prépare une photo pour la galerie
+Photos/               Tes originaux (jamais publiés, exclus de git)
 CNAME                 Domaine utilisé par GitHub Pages
 favicon.svg           Icône de l'onglet
 ```
@@ -23,6 +26,19 @@ Tout le texte est dans `index.html`. Chaque section commence par un commentaire 
 - **Ajouter un projet** : copier un bloc `<article class="project">`.
 - **Changer une image** : placer le fichier dans `assets/img/` et modifier l'attribut `src`.
 - **Changer les couleurs** : variables `--brand`, `--brand-2` et `--accent` en haut de `assets/css/style.css`.
+
+## Ajouter une photo (section Photography)
+
+1. Mettre l'original dans le dossier `Photos/`. Ce dossier n'est jamais publié.
+2. Lancer :
+
+```bash
+tools/add-photo.sh Photos/DSCF1234.jpg "Short description of the photo"
+```
+
+Le script crée deux copies web sans aucune métadonnée (position GPS, numéro de série de l'appareil) dans `assets/img/photos/`, puis affiche le bloc HTML à coller dans la galerie de `index.html`. Ce bloc contient déjà les réglages lus dans la photo : objectif, focale, ouverture, vitesse, ISO et date.
+
+Pour une image exportée de Canva avec un cadre blanc, ajouter `TRIM=1` devant la commande. Les 12 premières photos s'affichent directement, les autres apparaissent avec le bouton « Show all ». Outils nécessaires : `brew install imagemagick exiftool`.
 
 Les présentations, posters et rapports sont hébergés sur Google Drive : les fichiers doivent rester partagés en « Tous les utilisateurs disposant du lien ».
 

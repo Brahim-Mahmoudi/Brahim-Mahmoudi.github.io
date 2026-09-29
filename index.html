@@ -87,6 +87,9 @@
     <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
     <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/></symbol>
   </svg>
 
   <!-- ============ HEADER / NAVIGATION ============ -->
@@ -105,6 +108,7 @@
           <li><a href="#publications">Publications</a></li>
           <li><a href="#blog">Blog</a></li>
           <li><a href="#talks">Talks</a></li>
+          <li><a href="#photography">Photos</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -470,6 +474,105 @@
       </div>
     </section>
 
+    <!-- ============ PHOTOGRAPHY ============ -->
+    <section class="section section-dark" id="photography" aria-labelledby="photography-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-kicker">Beyond research</p>
+          <h2 class="section-title" id="photography-title">Photography</h2>
+          <p class="section-sub">Photography is my passion in my free time. Here is a selection of my shots, from mountain lakes to cities at golden hour, taken with a Fujifilm X-M5.</p>
+          <p class="gallery-hint"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>Click a photo to see it full screen, with its settings.</p>
+        </header>
+
+        <!--
+          To add a photo: put the original in the Photos folder (that folder is never published), then run
+            tools/add-photo.sh Photos/DSCF1234.jpg "Short description of the photo"
+          and paste the printed <a class="photo"> block where you want it in the gallery below.
+          The first 12 photos are shown, the others appear with the "Show all" button.
+        -->
+        <div class="gallery" data-gallery>
+          <a class="photo" href="assets/img/photos/full/dscf6942.jpg" style="--ar: 0.667">
+            <img src="assets/img/photos/thumb/dscf6942.jpg" alt="Mountain lake reflecting the peaks and clouds at dusk" width="667" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>18 mm</span><span>f/3.6</span><span>1/400 s</span><span>ISO 800</span><span class="date">June 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf2187.jpg" style="--ar: 1.499">
+            <img src="assets/img/photos/thumb/dscf2187.jpg" alt="Orange sunset over a coastal city, a lagoon and mountains" width="1000" height="667" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>18 mm</span><span>f/2.8</span><span>1/30 s</span><span>ISO 800</span><span class="date">April 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf7053.jpg" style="--ar: 0.667">
+            <img src="assets/img/photos/thumb/dscf7053.jpg" alt="Red canoes on a dock by a turquoise mountain lake" width="667" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>28 mm</span><span>f/3.2</span><span>1/800 s</span><span>ISO 160</span><span class="date">June 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf0009.jpg" style="--ar: 1.776">
+            <img src="assets/img/photos/thumb/dscf0009.jpg" alt="Lighthouse at the end of a pier under a golden sunset sky" width="1000" height="563" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>34 mm</span><span>f/8</span><span>1/60 s</span><span>ISO 250</span><span class="date">August 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf2002.jpg" style="--ar: 0.667">
+            <img src="assets/img/photos/thumb/dscf2002.jpg" alt="Hillside houses below a rocky peak and a deep blue sky" width="667" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 10-24mm</span><span>10 mm</span><span>f/4</span><span>1/2500 s</span><span>ISO 640</span><span class="date">April 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf2146.jpg" style="--ar: 1.499">
+            <img src="assets/img/photos/thumb/dscf2146.jpg" alt="Green peninsula and beaches along a turquoise ocean, seen from above" width="1000" height="667" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>19 mm</span><span>f/4</span><span>1/640 s</span><span>ISO 250</span><span class="date">April 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf6663.jpg" style="--ar: 0.667">
+            <img src="assets/img/photos/thumb/dscf6663.jpg" alt="Snowy mountain above a turquoise lake and a pine forest" width="667" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>36 mm</span><span>f/4</span><span>1/5000 s</span><span>ISO 800</span><span class="date">June 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/cycling-race-riders.jpg" style="--ar: 0.543">
+            <img src="assets/img/photos/thumb/cycling-race-riders.jpg" alt="Cyclists racing uphill on a road through the forest" width="543" height="1000" loading="lazy" decoding="async">
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf2000.jpg" style="--ar: 1.499">
+            <img src="assets/img/photos/thumb/dscf2000.jpg" alt="Turquoise bay and a tall hotel seen through tropical trees" width="1000" height="667" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 10-24mm</span><span>10 mm</span><span>f/4</span><span>1/2500 s</span><span>ISO 640</span><span class="date">April 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf8854.jpg" style="--ar: 0.667">
+            <img src="assets/img/photos/thumb/dscf8854.jpg" alt="Lifeguard tower on a beach at sunset" width="667" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">18-55mm</span><span>37 mm</span><span>f/4</span><span>1/800 s</span><span>ISO 320</span><span class="date">August 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf3473.jpg" style="--ar: 1.499">
+            <img src="assets/img/photos/thumb/dscf3473.jpg" alt="Ferris wheel and city skyline at sunset" width="1000" height="667" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>32 mm</span><span>f/3.6</span><span>1/1250 s</span><span>ISO 320</span><span class="date">April 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf7060.jpg" style="--ar: 0.701">
+            <img src="assets/img/photos/thumb/dscf7060.jpg" alt="Canoe on an emerald lake below forested mountains" width="701" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>29 mm</span><span>f/3.2</span><span>1/1600 s</span><span>ISO 200</span><span class="date">June 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf0010.jpg" style="--ar: 1.776">
+            <img src="assets/img/photos/thumb/dscf0010.jpg" alt="Sun setting over calm water next to a small lighthouse" width="1000" height="563" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>18 mm</span><span>f/8</span><span>1/80 s</span><span>ISO 250</span><span class="date">August 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf2198.jpg" style="--ar: 0.667">
+            <img src="assets/img/photos/thumb/dscf2198.jpg" alt="Sun setting behind mountains above a seaside city" width="667" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>55 mm</span><span>f/4</span><span>1/2000 s</span><span>ISO 320</span><span class="date">April 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf2138.jpg" style="--ar: 1.499">
+            <img src="assets/img/photos/thumb/dscf2138.jpg" alt="City and bay between mountains, backlit by the afternoon sun" width="1000" height="667" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 10-24mm</span><span>24 mm</span><span>f/4</span><span>1/1600 s</span><span>ISO 250</span><span class="date">April 2026</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/cycling-race-crowd.jpg" style="--ar: 0.550">
+            <img src="assets/img/photos/thumb/cycling-race-crowd.jpg" alt="Crowd lining a curved road during a cycling race" width="550" height="1000" loading="lazy" decoding="async">
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf8102.jpg" style="--ar: 0.667">
+            <img src="assets/img/photos/thumb/dscf8102.jpg" alt="Surfer walking on the beach with a board under a hazy sky" width="667" height="1000" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">18-55mm</span><span>55 mm</span><span>f/4</span><span>1/12800 s</span><span>ISO 3200</span><span class="date">June 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf3604.jpg" style="--ar: 1.499">
+            <img src="assets/img/photos/thumb/dscf3604.jpg" alt="People relaxing on the grass near a Ferris wheel at golden hour" width="1000" height="667" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>19 mm</span><span>f/4</span><span>1/1250 s</span><span>ISO 400</span><span class="date">April 2025</span></span>
+          </a>
+          <a class="photo" href="assets/img/photos/full/dscf0021.jpg" style="--ar: 1.776">
+            <img src="assets/img/photos/thumb/dscf0021.jpg" alt="Couple watching the sunset from a fence by the water" width="1000" height="563" loading="lazy" decoding="async">
+            <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>23 mm</span><span>f/5.6</span><span>1/80 s</span><span>ISO 250</span><span class="date">August 2026</span></span>
+          </a>
+        </div>
+
+        <div class="gallery-more">
+          <button class="chip-link" type="button" data-gallery-more aria-expanded="false" hidden><span data-gallery-more-label>Show all photos</span></button>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ CONTACT ============ -->
     <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="container">
@@ -531,6 +634,20 @@
       <img alt="">
       <figcaption></figcaption>
     </figure>
+  </dialog>
+
+  <!-- Full screen photo viewer (Photography section) -->
+  <dialog class="viewer" data-viewer aria-label="Photo viewer">
+    <figure class="viewer-stage" data-viewer-stage>
+      <img alt="" data-viewer-img>
+      <figcaption class="viewer-caption">
+        <span class="viewer-count" data-viewer-count></span>
+        <span class="viewer-meta" data-viewer-meta></span>
+      </figcaption>
+    </figure>
+    <button class="viewer-btn viewer-prev" type="button" data-viewer-prev aria-label="Previous photo"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+    <button class="viewer-btn viewer-next" type="button" data-viewer-next aria-label="Next photo"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+    <button class="viewer-btn viewer-close" type="button" data-viewer-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
   </dialog>
 
   <div class="toast" role="status" aria-live="polite" data-toast></div>
