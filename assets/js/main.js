@@ -269,6 +269,115 @@
     });
   });
 
+  /* ---------- Photography: fade-in, "show all" button, full screen viewer ---------- */
+  var gallery = document.querySelector("[data-gallery]");
+  if (gallery) {
+    var photos = Array.prototype.slice.call(gallery.querySelectorAll(".photo"));
+    var VISIBLE_PHOTOS = 12;
+
+    photos.forEach(function (link, index) {
+      var img = link.querySelector("img");
+      var markLoaded = function () { img.classList.add("is-loaded"); };
+      if (img.complete && img.naturalWidth) markLoaded();
+      else {
+        img.addEventListener("load", markLoaded);
+        img.addEventListener("error", markLoaded);
+      }
+      if (index >= VISIBLE_PHOTOS) link.classList.add("is-extra");
+    });
+
+    var moreButton = document.querySelector("[data-gallery-more]");
+    var moreLabel = document.querySelector("[data-gallery-more-label]");
+    if (moreButton && photos.length > VISIBLE_PHOTOS) {
+      var setMore = function (expanded) {
+        gallery.classList.toggle("is-expanded", expanded);
+        moreButton.setAttribute("aria-expanded", String(expanded));
+        moreLabel.textContent = expanded ? "Show fewer photos" : "Show all " + photos.length + " photos";
+      };
+      setMore(false);
+      moreButton.hidden = false;
+      moreButton.addEventListener("click", function () {
+        var expand = !gallery.classList.contains("is-expanded");
+        setMore(expand);
+        if (!expand) gallery.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" });
+      });
+    }
+
+    var viewer = document.querySelector("[data-viewer]");
+    if (viewer && typeof viewer.showModal === "function") {
+      var viewerImg = viewer.querySelector("[data-viewer-img]");
+      var viewerCount = viewer.querySelector("[data-viewer-count]");
+      var viewerMeta = viewer.querySelector("[data-viewer-meta]");
+      var current = 0;
+
+      var preload = function (index) {
+        var img = new Image();
+        img.src = photos[(index + photos.length) % photos.length].href;
+      };
+
+      var showPhoto = function (index) {
+        current = (index + photos.length) % photos.length;
+        var link = photos[current];
+        var thumb = link.querySelector("img");
+
+        // Show the small version right away, then swap in the large one once it has loaded
+        viewerImg.src = thumb.currentSrc || thumb.src;
+        viewerImg.alt = thumb.alt;
+        var large = new Image();
+        large.onload = function () { if (photos[current] === link) viewerImg.src = link.href; };
+        large.src = link.href;
+
+        viewerCount.textContent = (current + 1) + " / " + photos.length;
+        viewerMeta.replaceChildren();
+        link.querySelectorAll(".photo-meta span").forEach(function (item) {
+          var pill = document.createElement("span");
+          pill.textContent = item.textContent;
+          viewerMeta.appendChild(pill);
+        });
+        preload(current + 1);
+        preload(current - 1);
+      };
+
+      gallery.addEventListener("click", function (event) {
+        var link = event.target.closest(".photo");
+        if (!link) return;
+        event.preventDefault();
+        showPhoto(photos.indexOf(link));
+        viewer.showModal();
+        document.body.classList.add("no-scroll");
+      });
+
+      viewer.querySelector("[data-viewer-prev]").addEventListener("click", function () { showPhoto(current - 1); });
+      viewer.querySelector("[data-viewer-next]").addEventListener("click", function () { showPhoto(current + 1); });
+      viewer.querySelector("[data-viewer-close]").addEventListener("click", function () { viewer.close(); });
+
+      // Clicking the dark area around the photo closes the viewer
+      viewer.addEventListener("click", function (event) {
+        if (event.target === viewer || event.target.hasAttribute("data-viewer-stage")) viewer.close();
+      });
+
+      viewer.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowLeft") { event.preventDefault(); showPhoto(current - 1); }
+        if (event.key === "ArrowRight") { event.preventDefault(); showPhoto(current + 1); }
+      });
+
+      // Swipe left / right on phones
+      var touchStartX = null;
+      viewer.addEventListener("touchstart", function (event) { touchStartX = event.touches[0].clientX; }, { passive: true });
+      viewer.addEventListener("touchend", function (event) {
+        if (touchStartX === null) return;
+        var dx = event.changedTouches[0].clientX - touchStartX;
+        touchStartX = null;
+        if (Math.abs(dx) > 50) showPhoto(current + (dx < 0 ? 1 : -1));
+      });
+
+      viewer.addEventListener("close", function () {
+        document.body.classList.remove("no-scroll");
+        viewerImg.removeAttribute("src");
+      });
+    }
+  }
+
   /* ---------- Footer year ---------- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
