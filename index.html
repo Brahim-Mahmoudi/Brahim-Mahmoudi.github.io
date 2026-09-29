@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brahim Mahmoudi | PhD Student in Software Engineering, ÉTS Montréal</title>
+  <meta name="description" content="Brahim Mahmoudi is a PhD student in Software Engineering at ÉTS Montréal. His research focuses on AI-specific code smells, static code analysis and domain-specific languages to make AI-based systems more reliable, maintainable and robust.">
+  <meta name="author" content="Brahim Mahmoudi">
+  <link rel="canonical" href="https://www.brahimmahmoudi.com/">
+  <meta name="theme-color" content="#7f1146">
+
+  <!-- Social sharing (LinkedIn, X, Messenger…) -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Brahim Mahmoudi">
+  <meta property="og:title" content="Brahim Mahmoudi | PhD Student in Software Engineering">
+  <meta property="og:description" content="Research on AI-specific code smells, static analysis and DSLs for reliable AI-based systems at ÉTS Montréal.">
+  <meta property="og:url" content="https://www.brahimmahmoudi.com/">
+  <meta property="og:image" content="https://www.brahimmahmoudi.com/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Apply saved theme before first paint (avoids a flash of the wrong theme) -->
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      var savedTheme = localStorage.getItem("bm-theme");
+      if (savedTheme === "light" || savedTheme === "dark") document.documentElement.dataset.theme = savedTheme;
+    } catch (e) {}
+  </script>
+  <script src="assets/js/main.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Brahim Mahmoudi",
+    "url": "https://www.brahimmahmoudi.com/",
+    "image": "https://www.brahimmahmoudi.com/assets/img/portrait.jpg",
+    "jobTitle": "PhD Student in Software Engineering",
+    "email": "mailto:brahim.mahmoudi.1@ens.etsmtl.ca",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "École de technologie supérieure (ÉTS)",
+      "address": "Montréal, QC, Canada"
+    },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "INSA Lyon" },
+      { "@type": "CollegeOrUniversity", "name": "École de technologie supérieure (ÉTS)" }
+    ],
+    "knowsAbout": ["Software engineering", "AI code smells", "Static code analysis", "Domain-specific languages", "Large language models", "Microservices"],
+    "sameAs": ["https://github.com/Brahim-Mahmoudi"]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Icon set (used with <svg><use href="#i-…"/></svg>) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-paper" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6M9 9h2"/></symbol>
+    <symbol id="i-slides" viewBox="0 0 24 24"><path d="M3 4h18M4 4v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4M12 16v4M8 20h8"/></symbol>
+    <symbol id="i-poster" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="9.5" cy="8.5" r="1.5"/><path d="m20 15-4.5-4.5L6 20"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M10 14 20 4M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  </svg>
+
+  <!-- ============ HEADER / NAVIGATION ============ -->
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Brahim Mahmoudi, back to top">
+        <span class="brand-mark" aria-hidden="true">BM</span>
+        <span class="brand-name">Brahim Mahmoudi</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#master">Master</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#talks">Talks</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode" data-theme-toggle>
+          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+          <svg class="icon icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" aria-label="Introduction">
+      <img class="hero-bg" src="assets/img/hero-rugby.jpg" alt="" width="1800" height="1200" fetchpriority="high">
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="container">
+        <div class="hero-content">
+          <img class="hero-avatar" src="assets/img/avatar.jpg" alt="Portrait of Brahim Mahmoudi" width="320" height="320">
+          <p class="eyebrow">PhD Student in Software Engineering</p>
+          <h1 class="hero-title"><span>Brahim</span> <span class="last">MAHMOUDI</span></h1>
+          <p class="hero-lead">Passionate about artificial intelligence and software quality, I work on making <em>AI-based systems</em> more reliable, maintainable and robust.</p>
+          <ul class="hero-meta">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg>École de technologie supérieure (ÉTS)</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Montréal, Canada</li>
+          </ul>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#research">Explore my research <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            <a class="btn btn-ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#about" aria-label="Scroll to the About section"><span></span></a>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <figure class="about-photo" data-reveal>
+          <img src="assets/img/oratory.jpg" alt="Brahim Mahmoudi in a rugby jersey in front of Saint Joseph's Oratory in Montréal, at night" width="900" height="1271" loading="lazy">
+          <figcaption class="badge-float">
+            <svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>
+            <span><strong>Provincial &amp; national champion 2024</strong>ÉTS Piranhas rugby team</span>
+          </figcaption>
+        </figure>
+
+        <div class="about-body" data-reveal>
+          <p class="section-kicker">About</p>
+          <h2 class="section-title" id="about-title">Researcher, engineer &amp; rugby player</h2>
+
+          <p>My name is <strong>Brahim Mahmoudi</strong>, and I am currently a PhD student in Software Engineering at the École de technologie supérieure (ÉTS) in Montréal.</p>
+          <p>Passionate about <mark>artificial intelligence</mark> and software quality, my research focuses on improving the reliability, maintainability, and robustness of <mark>AI-based systems</mark>. Specifically, I work on the detection of AI-specific code smells through static code analysis and the design of a domain-specific language (DSL) that helps identify and prevent common pitfalls in AI codebases.</p>
+          <p>I hold an <mark>engineering degree</mark> in computer science from INSA Lyon, and I continued my academic path with a research-based master’s in software engineering at ÉTS, where I specialized in software quality, program analysis, and the modernisation of <mark>intelligent systems</mark>.</p>
+          <p>Outside of research, I am also a <mark>student-athlete</mark>, proudly representing the ÉTS rugby team, the Piranhas, with whom I became both <mark>provincial</mark> and <mark>national champion in 2024</mark>. This dual commitment has shaped my values around discipline, perseverance, and teamwork, which I bring both to the lab and to the field.</p>
+
+          <ul class="facts" data-stagger>
+            <li class="fact" data-reveal>
+              <span class="fact-label">Now</span>
+              <span class="fact-title">PhD, Software Engineering</span>
+              <span class="fact-sub">ÉTS, Montréal</span>
+            </li>
+            <li class="fact" data-reveal>
+              <span class="fact-label">Master’s</span>
+              <span class="fact-title">Research M.Sc., Software Engineering</span>
+              <span class="fact-sub">ÉTS, Montréal</span>
+            </li>
+            <li class="fact" data-reveal>
+              <span class="fact-label">Engineering</span>
+              <span class="fact-title">Engineering degree, Computer Science</span>
+              <span class="fact-sub">INSA Lyon, France</span>
+            </li>
+          </ul>
+
+          <ul class="tags" aria-label="Research interests">
+            <li class="tag">AI code smells</li>
+            <li class="tag">Static analysis</li>
+            <li class="tag">Domain-specific languages</li>
+            <li class="tag">LLM-based systems</li>
+            <li class="tag">Software quality</li>
+            <li class="tag">Microservices</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PhD RESEARCH ============ -->
+    <section class="section section-alt" id="research" aria-labelledby="research-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-kicker">PhD Project</p>
+          <h2 class="section-title" id="research-title">Research</h2>
+          <p class="section-sub">Specifying and detecting the pitfalls that make AI-based and LLM-based software fragile.</p>
+        </header>
+
+        <div class="projects">
+          <!-- Project 1 -->
+          <article class="project" data-reveal>
+            <a class="project-figure" href="assets/img/specdetect4ai.png" data-lightbox data-caption="SpecDetect4AI: overview of the approach">
+              <img src="assets/img/specdetect4ai.png" alt="Overview diagram of the SpecDetect4AI approach" width="618" height="403" loading="lazy">
+              <span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+            </a>
+            <div class="project-body">
+              <p class="project-venue">arXiv preprint 2025</p>
+              <h3 class="project-title">SpecDetect4AI</h3>
+              <p class="project-tagline"><span class="hi">Automated</span> Detection of <span class="hi">AI Code Smells</span> Using a Domain-Specific Language</p>
+              <p class="project-desc">A domain-specific language to specify AI-specific code smells, combined with static code analysis to detect them automatically in AI codebases.</p>
+              <ul class="link-row">
+                <li><a class="chip-link" href="https://arxiv.org/abs/2509.20491"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>Paper</a></li>
+                <li><a class="chip-link" href="https://drive.google.com/file/d/1QoQl3-Vx2KYDngiwVSgU1T45sWSwt_V9/view?usp=share_link"><svg class="icon" aria-hidden="true"><use href="#i-slides"/></svg>Presentation</a></li>
+                <li><a class="chip-link" href="https://drive.google.com/file/d/1wU1bRuYtTBNnTmMCCU6vc--pjbeAx_-0/view?usp=share_link"><svg class="icon" aria-hidden="true"><use href="#i-poster"/></svg>Poster</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project" data-reveal>
+            <a class="project-figure" href="assets/img/llm-code-smells.png" data-lightbox data-caption="Specification and Detection of LLM Code Smells: catalog construction, detection approach and assessment">
+              <img src="assets/img/llm-code-smells.png" alt="Diagram: catalog construction, detection approach with SpecDetect4LLM, and assessment of LLM code smells" width="904" height="651" loading="lazy">
+              <span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+            </a>
+            <div class="project-body">
+              <p class="project-venue">ICSE 2026, NIER track</p>
+              <h3 class="project-title">Specification and Detection of LLM Code Smells</h3>
+              <p class="project-desc">A catalog of code smells specific to software that integrates large language models, built from the literature, grey literature and empirical data, then detected automatically and assessed for prevalence.</p>
+              <ul class="link-row">
+                <li><a class="chip-link" href="https://conf.researchr.org/details/icse-2026/icse-2026-nier/37/Specification-and-Detection-of-LLM-Code-Smells"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>Paper</a></li>
+                <li><a class="chip-link" href="https://arxiv.org/abs/2512.18020"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>arXiv</a></li>
+                <li><a class="chip-link" href="https://drive.google.com/file/d/1UweajBNNGjilzs7_asqDpfh-zaoTVgUh/view?usp=sharing"><svg class="icon" aria-hidden="true"><use href="#i-slides"/></svg>Presentation</a></li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project" data-reveal>
+            <a class="project-figure" href="assets/img/glise.png" data-lightbox data-caption="GLiSE: from a prompt to a grey literature corpus">
+              <img src="assets/img/glise.png" alt="GLiSE pipeline: prompt, LLM-generated queries, web search, extraction, ML classification, grey literature corpus" width="1205" height="482" loading="lazy">
+              <span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+            </a>
+            <div class="project-body">
+              <p class="project-venue">MSR 2026, Data &amp; Tool Showcase</p>
+              <h3 class="project-title">GLiSE</h3>
+              <p class="project-tagline">A <span class="hi">Prompt</span>-Driven and <span class="hi">ML</span>-Powered Tool for Automated Grey Literature Extraction in Software Engineering</p>
+              <ul class="link-row">
+                <li><a class="chip-link" href="https://2026.msrconf.org/details/msr-2026-data-and-tool-showcase-track/1/GLiSE-A-Prompt-Driven-and-ML-Powered-Tool-for-Automated-Grey-Literature-Extraction-i"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>Paper</a></li>
+                <li><a class="chip-link" href="https://drive.google.com/file/d/1CyGa4SiNaqwOXs2TG8a_Dp5dNc29EY6B/view?usp=share_link"><svg class="icon" aria-hidden="true"><use href="#i-poster"/></svg>Poster</a></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MASTER PROJECT ============ -->
+    <section class="section" id="master" aria-labelledby="master-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-kicker">Master Project</p>
+          <h2 class="section-title" id="master-title">BOAM</h2>
+          <p class="section-sub">A <span class="hi">Business Oriented</span> identification Approach of <span class="hi">Microservices</span> within legacy systems.</p>
+        </header>
+
+        <div class="feature">
+          <div class="feature-body" data-reveal>
+            <p class="project-venue">ICSOC 2024, LNCS vol. 15405</p>
+            <p>“BOAM: A Business Oriented Identification Approach of Microservices Within Legacy Systems”, presented at <strong>ICSOC 2024</strong> (International Conference on Service-Oriented Computing) and published in Lecture Notes in Computer Science (LNCS, vol. 15405).</p>
+            <p>In this paper, we introduce BOAM, a hybrid approach that combines source code analysis with business use cases to automatically identify microservices within legacy systems. Our method leverages static and semantic analysis as well as machine learning techniques to deliver relevant and actionable microservice groupings.</p>
+            <p class="note">Thanks to my co-authors and the research team for this great collaboration!</p>
+            <ul class="link-row">
+              <li><a class="chip-link" href="https://link.springer.com/chapter/10.1007/978-981-96-0808-9_10"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>Paper</a></li>
+              <li><a class="chip-link" href="https://drive.google.com/file/d/1_L8Vce1R81KOAEZJBtbsv7tUNWtve8T-/view?usp=share_link"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>PFE report</a></li>
+              <li><a class="chip-link" href="https://drive.google.com/file/d/1RpBAkBa_u63F2IwQtL99QY4N2AlgU_hh/view?usp=sharing"><svg class="icon" aria-hidden="true"><use href="#i-slides"/></svg>PFE presentation</a></li>
+              <li><a class="chip-link" href="https://drive.google.com/file/d/1LuD3GzkwymV9qj_KykHXbTJ30FJu2q_e/view?usp=share_link"><svg class="icon" aria-hidden="true"><use href="#i-poster"/></svg>Poster</a></li>
+            </ul>
+          </div>
+
+          <div class="feature-media" data-reveal>
+            <a class="project-figure" href="assets/img/boam-1.jpg" data-lightbox data-caption="BOAM: overview of the approach">
+              <img src="assets/img/boam-1.jpg" alt="BOAM approach: use cases preparation, typed services identification, semantic analysis of source code and use cases, clustering into business-oriented microservices" width="726" height="537" loading="lazy">
+              <span class="zoom-hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
+            </a>
+            <img class="feature-cover" src="assets/img/boam-2.jpg" alt="Cover of the ICSOC 2024 proceedings, Service-Oriented Computing, LNCS 15405" width="566" height="844" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PUBLICATIONS ============ -->
+    <section class="section section-alt" id="publications" aria-labelledby="publications-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-kicker">Papers</p>
+          <h2 class="section-title" id="publications-title">Publications</h2>
+        </header>
+
+        <div class="pub-toolbar" data-reveal>
+          <div class="filters" role="group" aria-label="Filter publications by type">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">All <span class="count"></span></button>
+            <button class="filter" type="button" data-filter="conference" aria-pressed="false">Conference <span class="count"></span></button>
+            <button class="filter" type="button" data-filter="journal" aria-pressed="false">Journal <span class="count"></span></button>
+            <button class="filter" type="button" data-filter="preprint" aria-pressed="false">Preprint <span class="count"></span></button>
+          </div>
+          <p class="pub-count" aria-live="polite" data-pub-count></p>
+        </div>
+
+        <!--
+          To add a publication: copy one <li class="pub"> … </li> block, paste it at the top of the list and edit it.
+          data-type = "conference" | "journal" | "preprint" (used by the filter buttons).
+          The "Copy citation" button builds the APA citation from the authors, year, title, venue and the first link.
+        -->
+        <ol class="pub-list">
+          <li class="pub" data-type="conference">
+            <p class="pub-year">2026</p>
+            <div class="pub-main">
+              <h3 class="pub-title">Specification and Detection of LLM Code Smells</h3>
+              <p class="pub-authors"><b>Mahmoudi, B.</b>, Chenail-Larcher, Z., Moha, N., Stiévenart, Q., &amp; Avellaneda, F.</p>
+              <p class="pub-venue"><span class="pub-badge">ICSE NIER</span><span data-venue>In Proceedings of the 2026 IEEE/ACM International Conference on Software Engineering, New Ideas and Emerging Results (ICSE NIER 2026)</span></p>
+              <div class="pub-actions">
+                <a class="chip-link" href="https://doi.org/10.1145/3786582.3786835" data-cite-link><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>DOI</a>
+                <a class="chip-link" href="https://arxiv.org/abs/2512.18020"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>arXiv</a>
+                <button class="chip-link" type="button" data-cite><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Copy citation</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub" data-type="conference">
+            <p class="pub-year">2026</p>
+            <div class="pub-main">
+              <h3 class="pub-title">GLiSE: A Prompt-Driven and ML-Powered Tool for Automated Grey Literature Extraction in Software Engineering</h3>
+              <p class="pub-authors"><b>Mahmoudi, B.</b>, Chenail-Larcher, Z., Cherief, H. A., Stiévenart, Q., Moha, N., &amp; Avellaneda, F.</p>
+              <p class="pub-venue"><span class="pub-badge">MSR</span><span data-venue>In Proceedings of the 23rd International Conference on Mining Software Repositories (MSR 2026)</span></p>
+              <div class="pub-actions">
+                <a class="chip-link" href="https://doi.org/10.1145/3793302.3793304" data-cite-link><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>DOI</a>
+                <button class="chip-link" type="button" data-cite><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Copy citation</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub" data-type="journal">
+            <p class="pub-year">2025</p>
+            <div class="pub-main">
+              <h3 class="pub-title">A Systematic Literature Review of Machine Learning Approaches for Migrating Monolithic Systems to Microservices</h3>
+              <p class="pub-authors">Trabelsi, I., <b>Mahmoudi, B.</b>, Minani, J. B., Moha, N., &amp; Guéhéneuc, Y.-G.</p>
+              <p class="pub-venue"><span class="pub-badge">IEEE TSE</span><span data-venue>IEEE Transactions on Software Engineering, 51(11), 2972–2995</span></p>
+              <div class="pub-actions">
+                <a class="chip-link" href="https://doi.org/10.1109/TSE.2025.3603897" data-cite-link><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>DOI</a>
+                <button class="chip-link" type="button" data-cite><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Copy citation</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub" data-type="preprint">
+            <p class="pub-year">2025</p>
+            <div class="pub-main">
+              <h3 class="pub-title">AI-Specific Code Smells: From Specification to Detection</h3>
+              <p class="pub-authors"><b>Mahmoudi, B.</b>, Moha, N., Stiévenart, Q., &amp; Avellaneda, F.</p>
+              <p class="pub-venue"><span class="pub-badge">arXiv</span><span data-venue>arXiv preprint</span></p>
+              <div class="pub-actions">
+                <a class="chip-link" href="https://arxiv.org/abs/2509.20491" data-cite-link><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>arXiv</a>
+                <button class="chip-link" type="button" data-cite><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Copy citation</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="pub" data-type="conference">
+            <p class="pub-year">2024</p>
+            <div class="pub-main">
+              <h3 class="pub-title">BOAM: A Business Oriented Identification Approach of Microservices Within Legacy Systems</h3>
+              <p class="pub-authors"><b>Mahmoudi, B.</b>, Trabelsi, I., Tamzalit, D., Moha, N., &amp; Guéhéneuc, Y.-G.</p>
+              <p class="pub-venue"><span class="pub-badge">ICSOC</span><span data-venue>In ICSOC 2024 Workshops, Lecture Notes in Computer Science (Vol. 15405), Springer, pp. 123–137</span></p>
+              <div class="pub-actions">
+                <a class="chip-link" href="https://doi.org/10.1007/978-981-96-0808-9_10" data-cite-link><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>DOI</a>
+                <button class="chip-link" type="button" data-cite><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>Copy citation</button>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ BLOG ============ -->
+    <section class="section" id="blog" aria-labelledby="blog-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-kicker">Writing</p>
+          <h2 class="section-title" id="blog-title">Blog posts</h2>
+          <p class="section-sub">Articles published on the Ptidej Team Blog.</p>
+        </header>
+
+        <div class="cards" data-stagger>
+          <article class="post-card" data-reveal>
+            <a class="post-link" href="https://blog.ptidej.net/harnessing-data-analysis-in-sports-revolutionizing-rugby-performance/">
+              <div class="post-cover"><img src="assets/img/blog-rugby-data.jpg" alt="" width="720" height="405" loading="lazy"></div>
+              <div class="post-body">
+                <p class="post-meta"><time datetime="2024-04-25">Apr 25, 2024</time></p>
+                <h3 class="post-title">Harnessing Data Analysis in Sports: Revolutionizing Rugby Performance</h3>
+                <span class="post-more">Read the article <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+              </div>
+            </a>
+          </article>
+
+          <article class="post-card" data-reveal>
+            <a class="post-link" href="https://www.ptidej.net/blog/the-integration-of-large-language-models-in-enterprises-revolution-or-evolution/">
+              <div class="post-cover"><img src="assets/img/blog-llm-enterprise.jpg" alt="" width="720" height="405" loading="lazy"></div>
+              <div class="post-body">
+                <p class="post-meta"><time datetime="2024-08-19">Aug 19, 2024</time></p>
+                <h3 class="post-title">The Integration of Large Language Models in Enterprises: Revolution or Evolution?</h3>
+                <span class="post-more">Read the article <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+              </div>
+            </a>
+          </article>
+
+          <article class="post-card" data-reveal>
+            <a class="post-link" href="https://blog.ptidej.net/challenges-and-opportunities-in-improving-ai-systems/">
+              <div class="post-cover"><img src="assets/img/blog-ai-systems.jpg" alt="" width="720" height="405" loading="lazy"></div>
+              <div class="post-body">
+                <p class="post-meta"><time datetime="2024-11-27">Nov 27, 2024</time></p>
+                <h3 class="post-title">Challenges and Opportunities in Improving AI Systems</h3>
+                <span class="post-more">Read the article <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TALKS ============ -->
+    <section class="section section-alt" id="talks" aria-labelledby="talks-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-kicker">Presentations</p>
+          <h2 class="section-title" id="talks-title">Talks</h2>
+        </header>
+
+        <article class="talk" data-reveal>
+          <div class="talk-info">
+            <p class="project-venue">Slides</p>
+            <h3 class="project-title">JPMS</h3>
+            <p class="project-tagline">Java Platform Module System</p>
+            <ul class="link-row">
+              <li><a class="chip-link" href="https://drive.google.com/file/d/1LTNCGnOXn28PzlfGfCjxhvCLjQ2M2GCa/view"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Open in Google Drive</a></li>
+            </ul>
+            <p class="talk-more">Research presentations and posters are linked under each project in <a href="#research">Research</a> and <a href="#master">Master</a>.</p>
+          </div>
+
+          <!-- The Drive viewer only loads when the visitor clicks (keeps the page fast). -->
+          <div class="embed" data-embed="https://drive.google.com/file/d/1LTNCGnOXn28PzlfGfCjxhvCLjQ2M2GCa/preview" data-embed-title="JPMS (Java Platform Module System) slides">
+            <div class="embed-poster">
+              <p class="embed-kicker">Java Platform Module System</p>
+              <p class="embed-big">JPMS</p>
+              <button class="btn btn-light" type="button" data-embed-load><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>View the slides</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-card" data-reveal>
+          <div class="contact-intro">
+            <p class="section-kicker">Contact</p>
+            <h2 class="section-title" id="contact-title">Get in touch</h2>
+            <p>Happy to talk about research collaborations, software quality for AI-based systems, or rugby.</p>
+          </div>
+
+          <ul class="contact-list">
+            <li class="contact-row">
+              <a class="contact-item" href="mailto:brahim.mahmoudi.1@ens.etsmtl.ca">
+                <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                <span>brahim.mahmoudi.1@<wbr>ens.etsmtl.ca</span>
+              </a>
+              <button class="copy-btn" type="button" data-copy="brahim.mahmoudi.1@ens.etsmtl.ca" data-copy-message="Email address copied" aria-label="Copy email address">
+                <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>
+              </button>
+            </li>
+            <li>
+              <a class="contact-item" href="tel:+14383387133">
+                <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+                <span>+1 (438) 338-7133</span>
+              </a>
+            </li>
+            <li>
+              <a class="contact-item" href="https://github.com/Brahim-Mahmoudi">
+                <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+                <span>github.com/Brahim-Mahmoudi</span>
+              </a>
+            </li>
+            <!-- Add more profiles by copying a block above, e.g. LinkedIn, Google Scholar or ORCID. -->
+            <li>
+              <span class="contact-item">
+                <svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>
+                <span>ÉTS, Montréal, Canada</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span data-year>2026</span> Brahim Mahmoudi</p>
+      <a class="to-top" href="#top">Back to top <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+    </div>
+  </footer>
+
+  <!-- Image viewer for diagrams -->
+  <dialog class="lightbox" data-lightbox-dialog aria-label="Enlarged image">
+    <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">
+      <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+    <figure>
+      <img alt="">
+      <figcaption></figcaption>
+    </figure>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+</body>
+</html>
