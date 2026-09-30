@@ -4,36 +4,8 @@
 (function () {
   "use strict";
 
-  var root = document.documentElement;
   var header = document.querySelector("[data-header]");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-  /* ---------- Theme (light / dark) ---------- */
-  var THEME_KEY = "bm-theme";
-  var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  var themeButton = document.querySelector("[data-theme-toggle]");
-  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
-
-  function currentTheme() {
-    return root.dataset.theme || (darkQuery.matches ? "dark" : "light");
-  }
-
-  function syncThemeUI() {
-    var dark = currentTheme() === "dark";
-    if (themeButton) themeButton.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-    if (themeColorMeta) themeColorMeta.setAttribute("content", dark ? "#121013" : "#7f1146");
-  }
-
-  if (themeButton) {
-    themeButton.addEventListener("click", function () {
-      var next = currentTheme() === "dark" ? "light" : "dark";
-      root.dataset.theme = next;
-      try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* storage unavailable: theme lasts for this visit */ }
-      syncThemeUI();
-    });
-  }
-  if (darkQuery.addEventListener) darkQuery.addEventListener("change", syncThemeUI);
-  syncThemeUI();
 
   /* ---------- Header: solid background once the page is scrolled ---------- */
   var ticking = false;
@@ -269,13 +241,19 @@
     });
   });
 
-  /* ---------- Photography: fade-in, "show all" button, full screen viewer ---------- */
-  var gallery = document.querySelector("[data-gallery]");
-  if (gallery) {
-    var photos = Array.prototype.slice.call(gallery.querySelectorAll(".photo"));
-    var VISIBLE_PHOTOS = 12;
+  /* ---------- Photography: card carousel + full screen viewer ---------- */
+  var track = document.querySelector("[data-gallery]");
+  if (track) {
+    var photos = Array.prototype.slice.call(track.querySelectorAll(".photo"));
+    var prevButton = document.querySelector("[data-carousel-prev]");
+    var nextButton = document.querySelector("[data-carousel-next]");
+    var toggleButton = document.querySelector("[data-carousel-toggle]");
+    var progressBar = document.querySelector("[data-carousel-bar]");
+    var counter = document.querySelector("[data-carousel-count]");
+    var centered = 0;
 
-    photos.forEach(function (link, index) {
+    // Fade each photo in once it has loaded
+    photos.forEach(function (link) {
       var img = link.querySelector("img");
       var markLoaded = function () { img.classList.add("is-loaded"); };
       if (img.complete && img.naturalWidth) markLoaded();
@@ -283,25 +261,135 @@
         img.addEventListener("load", markLoaded);
         img.addEventListener("error", markLoaded);
       }
-      if (index >= VISIBLE_PHOTOS) link.classList.add("is-extra");
     });
 
-    var moreButton = document.querySelector("[data-gallery-more]");
-    var moreLabel = document.querySelector("[data-gallery-more-label]");
-    if (moreButton && photos.length > VISIBLE_PHOTOS) {
-      var setMore = function (expanded) {
-        gallery.classList.toggle("is-expanded", expanded);
-        moreButton.setAttribute("aria-expanded", String(expanded));
-        moreLabel.textContent = expanded ? "Show fewer photos" : "Show all " + photos.length + " photos";
-      };
-      setMore(false);
-      moreButton.hidden = false;
-      moreButton.addEventListener("click", function () {
-        var expand = !gallery.classList.contains("is-expanded");
-        setMore(expand);
-        if (!expand) gallery.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" });
+    // The card closest to the middle is full size and bright, the others shrink and dim
+    var updateCards = function () {
+      var box = track.getBoundingClientRect();
+      var middle = box.left + box.width / 2;
+      var bestDistance = Infinity;
+      photos.forEach(function (card, index) {
+        var r = card.getBoundingClientRect();
+        var distance = Math.abs(r.left + r.width / 2 - middle);
+        card.style.setProperty("--focus", Math.max(0, 1 - distance / (box.width * 0.55)).toFixed(3));
+        if (distance < bestDistance) { bestDistance = distance; centered = index; }
       });
+      if (counter) counter.textContent = (centered + 1) + " / " + photos.length;
+      if (progressBar) {
+        var max = track.scrollWidth - track.clientWidth;
+        var visible = track.clientWidth / track.scrollWidth * 100;
+        progressBar.style.width = visible + "%";
+        progressBar.style.left = (max > 0 ? track.scrollLeft / max : 0) * (100 - visible) + "%";
+      }
+    };
+    var framePending = false;
+    var requestUpdate = function () {
+      if (framePending) return;
+      framePending = true;
+      window.requestAnimationFrame(function () { framePending = false; updateCards(); });
+    };
+    // Side padding so that the first and the last card can sit exactly in the middle
+    var sizePadding = function () {
+      track.style.paddingLeft = Math.max(16, (track.clientWidth - photos[0].offsetWidth) / 2) + "px";
+      track.style.paddingRight = Math.max(16, (track.clientWidth - photos[photos.length - 1].offsetWidth) / 2) + "px";
+    };
+    track.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", function () { sizePadding(); requestUpdate(); });
+    sizePadding();
+
+    // Start on the first card that leaves no empty space on its left, so the row looks full
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    var before = 0;
+    for (var start = 0; start < photos.length - 1; start++) {
+      if (before >= (track.clientWidth - photos[start].offsetWidth) / 2) break;
+      before += photos[start].offsetWidth + gap;
     }
+    track.style.scrollBehavior = "auto"; // jump there directly, no animation on page load
+    track.scrollLeft = photos[start].offsetLeft - (track.clientWidth - photos[start].offsetWidth) / 2;
+    track.style.scrollBehavior = "";
+    updateCards();
+
+    var goTo = function (index) {
+      var card = photos[(index + photos.length) % photos.length];
+      track.scrollTo({
+        left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2,
+        behavior: reduceMotion.matches ? "auto" : "smooth"
+      });
+    };
+
+    // Autoplay: moves every few seconds while the carousel is on screen,
+    // pauses on hover, focus, touch or with the pause button, never runs with reduced motion
+    var autoplay = !reduceMotion.matches;
+    var onScreen = false;
+    var holding = false;
+    var timer = null;
+    var schedule = function () {
+      clearInterval(timer);
+      timer = null;
+      if (autoplay && onScreen && !holding && !document.hidden) {
+        timer = setInterval(function () { goTo(centered + 1); }, 3500);
+      }
+    };
+    var setAutoplay = function (on) {
+      autoplay = on;
+      if (toggleButton) {
+        toggleButton.classList.toggle("is-paused", !on);
+        toggleButton.setAttribute("aria-label", on ? "Pause the slideshow" : "Play the slideshow");
+      }
+      schedule();
+    };
+    setAutoplay(autoplay);
+
+    if (toggleButton) toggleButton.addEventListener("click", function () { setAutoplay(!autoplay); });
+    if (prevButton) prevButton.addEventListener("click", function () { goTo(centered - 1); schedule(); });
+    if (nextButton) nextButton.addEventListener("click", function () { goTo(centered + 1); schedule(); });
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[0].isIntersecting;
+        schedule();
+      }, { threshold: 0.35 }).observe(track);
+    }
+    document.addEventListener("visibilitychange", schedule);
+    track.addEventListener("mouseenter", function () { holding = true; schedule(); });
+    track.addEventListener("mouseleave", function () { holding = false; schedule(); });
+    track.addEventListener("focusin", function () { holding = true; schedule(); });
+    track.addEventListener("focusout", function () { holding = false; schedule(); });
+    track.addEventListener("touchstart", function () { holding = true; schedule(); }, { passive: true });
+    track.addEventListener("touchend", function () {
+      setTimeout(function () { holding = false; schedule(); }, 4000);
+    });
+
+    // Drag with the mouse on desktop (touch screens scroll natively)
+    var dragStartX = 0;
+    var dragStartScroll = 0;
+    var dragging = false;
+    var dragged = false;
+    track.addEventListener("dragstart", function (event) { event.preventDefault(); });
+    track.addEventListener("pointerdown", function (event) {
+      if (event.pointerType !== "mouse" || event.button !== 0) return;
+      dragging = true;
+      dragged = false;
+      dragStartX = event.clientX;
+      dragStartScroll = track.scrollLeft;
+    });
+    window.addEventListener("pointermove", function (event) {
+      if (!dragging) return;
+      var dx = event.clientX - dragStartX;
+      if (!dragged && Math.abs(dx) > 6) {
+        dragged = true;
+        track.classList.add("is-dragging");
+      }
+      if (dragged) track.scrollLeft = dragStartScroll - dx;
+    });
+    window.addEventListener("pointerup", function () {
+      if (!dragging) return;
+      dragging = false;
+      if (dragged) {
+        track.classList.remove("is-dragging");
+        goTo(centered); // settle on the nearest card
+      }
+    });
 
     var viewer = document.querySelector("[data-viewer]");
     if (viewer && typeof viewer.showModal === "function") {
@@ -338,13 +426,16 @@
         preload(current - 1);
       };
 
-      gallery.addEventListener("click", function (event) {
+      track.addEventListener("click", function (event) {
         var link = event.target.closest(".photo");
         if (!link) return;
         event.preventDefault();
+        if (dragged) { dragged = false; return; } // end of a drag, not a click
         showPhoto(photos.indexOf(link));
         viewer.showModal();
         document.body.classList.add("no-scroll");
+        holding = true;
+        schedule();
       });
 
       viewer.querySelector("[data-viewer-prev]").addEventListener("click", function () { showPhoto(current - 1); });
@@ -374,6 +465,9 @@
       viewer.addEventListener("close", function () {
         document.body.classList.remove("no-scroll");
         viewerImg.removeAttribute("src");
+        goTo(current); // bring the carousel to the last photo seen
+        holding = false;
+        schedule();
       });
     }
   }

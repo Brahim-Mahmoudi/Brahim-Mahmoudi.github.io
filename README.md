@@ -8,7 +8,7 @@ Site personnel de Brahim Mahmoudi, codé en HTML, CSS et JavaScript, sans framew
 index.html            Page unique avec toutes les sections
 404.html              Page affichée pour une adresse inexistante
 assets/css/style.css  Styles (les couleurs sont définies en haut du fichier)
-assets/js/main.js     Menu mobile, mode sombre, filtres, copie de citation, visionneuse d'images
+assets/js/main.js     Menu mobile, filtres, copie de citation, carrousel et visionneuse de photos
 assets/img/           Images du site
 assets/img/photos/    Photos de la section Photography (versions web)
 tools/add-photo.sh    Prépare une photo pour la galerie
@@ -26,6 +26,7 @@ Tout le texte est dans `index.html`. Chaque section commence par un commentaire 
 - **Ajouter un projet** : copier un bloc `<article class="project">`.
 - **Changer une image** : placer le fichier dans `assets/img/` et modifier l'attribut `src`.
 - **Changer les couleurs** : variables `--brand`, `--brand-2` et `--accent` en haut de `assets/css/style.css`.
+- **Après une modification de `style.css` ou `main.js`** : augmenter le numéro `?v=` de leurs liens dans `index.html` (et `404.html` pour le CSS). Sinon, les visiteurs déjà venus gardent l'ancienne version en cache pendant 10 minutes.
 
 ## Ajouter une photo (section Photography)
 
@@ -38,7 +39,7 @@ tools/add-photo.sh Photos/DSCF1234.jpg "Short description of the photo"
 
 Le script crée deux copies web sans aucune métadonnée (position GPS, numéro de série de l'appareil) dans `assets/img/photos/`, puis affiche le bloc HTML à coller dans la galerie de `index.html`. Ce bloc contient déjà les réglages lus dans la photo : objectif, focale, ouverture, vitesse, ISO et date.
 
-Pour une image exportée de Canva avec un cadre blanc, ajouter `TRIM=1` devant la commande. Les 12 premières photos s'affichent directement, les autres apparaissent avec le bouton « Show all ». Outils nécessaires : `brew install imagemagick exiftool`.
+Pour une image exportée de Canva avec un cadre blanc, ajouter `TRIM=1` devant la commande. Les photos défilent dans le carrousel dans l'ordre des blocs du HTML : place le bloc là où tu veux la voir apparaître. Outils nécessaires : `brew install imagemagick exiftool`.
 
 Les présentations, posters et rapports sont hébergés sur Google Drive : les fichiers doivent rester partagés en « Tous les utilisateurs disposant du lien ».
 
