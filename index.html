@@ -26,17 +26,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
 
-  <!-- Apply saved theme before first paint (avoids a flash of the wrong theme) -->
-  <script>
-    document.documentElement.classList.add("js");
-    try {
-      var savedTheme = localStorage.getItem("bm-theme");
-      if (savedTheme === "light" || savedTheme === "dark") document.documentElement.dataset.theme = savedTheme;
-    } catch (e) {}
-  </script>
-  <script src="assets/js/main.js" defer></script>
+  <!-- Tells the CSS that JavaScript is running (used by the scroll animations) -->
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="assets/js/main.js?v=2" defer></script>
 
   <script type="application/ld+json">
   {
@@ -78,8 +72,6 @@
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
     <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></symbol>
     <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol>
-    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
-    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
     <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
@@ -87,6 +79,7 @@
     <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
     <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
     <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
     <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
     <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/></symbol>
@@ -114,10 +107,6 @@
       </nav>
 
       <div class="header-actions">
-        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode" data-theme-toggle>
-          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
-          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
-        </button>
         <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
           <svg class="icon icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
           <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
@@ -135,7 +124,7 @@
 
       <div class="container">
         <div class="hero-content">
-          <img class="hero-avatar" src="assets/img/avatar.jpg" alt="Portrait of Brahim Mahmoudi" width="320" height="320">
+          <img class="hero-avatar" src="assets/img/avatar.jpg?v=2" alt="Portrait of Brahim Mahmoudi" width="320" height="320">
           <p class="eyebrow">PhD Student in Software Engineering</p>
           <h1 class="hero-title"><span>Brahim</span> <span class="last">MAHMOUDI</span></h1>
           <p class="hero-lead">Passionate about artificial intelligence and software quality, I work on making <em>AI-based systems</em> more reliable, maintainable and robust.</p>
@@ -475,22 +464,25 @@
     </section>
 
     <!-- ============ PHOTOGRAPHY ============ -->
-    <section class="section section-dark" id="photography" aria-labelledby="photography-title">
+    <section class="section section-photos" id="photography" aria-labelledby="photography-title">
       <div class="container">
         <header class="section-head" data-reveal>
           <p class="section-kicker">Beyond research</p>
           <h2 class="section-title" id="photography-title">Photography</h2>
           <p class="section-sub">Photography is my passion in my free time. Here is a selection of my shots, from mountain lakes to cities at golden hour, taken with a Fujifilm X-M5.</p>
-          <p class="gallery-hint"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>Click a photo to see it full screen, with its settings.</p>
+          <p class="gallery-hint"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>Swipe through the cards, click one to see it full screen with its settings.</p>
         </header>
 
         <!--
           To add a photo: put the original in the Photos folder (that folder is never published), then run
             tools/add-photo.sh Photos/DSCF1234.jpg "Short description of the photo"
           and paste the printed <a class="photo"> block where you want it in the gallery below.
-          The first 12 photos are shown, the others appear with the "Show all" button.
+          The cards scroll in the order of the blocks below.
         -->
-        <div class="gallery" data-gallery>
+      </div>
+
+      <div class="carousel">
+        <div class="carousel-track" data-gallery tabindex="0" role="region" aria-label="Photo carousel, scroll horizontally">
           <a class="photo" href="assets/img/photos/full/dscf6942.jpg" style="--ar: 0.667">
             <img src="assets/img/photos/thumb/dscf6942.jpg" alt="Mountain lake reflecting the peaks and clouds at dusk" width="667" height="1000" loading="lazy" decoding="async">
             <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>18 mm</span><span>f/3.6</span><span>1/400 s</span><span>ISO 800</span><span class="date">June 2025</span></span>
@@ -566,9 +558,18 @@
             <span class="photo-meta"><span class="lens">XF 18-55mm</span><span>23 mm</span><span>f/5.6</span><span>1/80 s</span><span>ISO 250</span><span class="date">August 2026</span></span>
           </a>
         </div>
+      </div>
 
-        <div class="gallery-more">
-          <button class="chip-link" type="button" data-gallery-more aria-expanded="false" hidden><span data-gallery-more-label>Show all photos</span></button>
+      <div class="container">
+        <div class="carousel-controls" data-carousel-controls>
+          <button class="carousel-btn" type="button" data-carousel-prev aria-label="Previous photo"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+          <div class="carousel-progress" aria-hidden="true"><span data-carousel-bar></span></div>
+          <p class="carousel-count" data-carousel-count>1 / 19</p>
+          <button class="carousel-btn carousel-toggle" type="button" data-carousel-toggle aria-label="Pause the slideshow">
+            <svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+            <svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg>
+          </button>
+          <button class="carousel-btn" type="button" data-carousel-next aria-label="Next photo"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
         </div>
       </div>
     </section>
