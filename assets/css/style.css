@@ -394,6 +394,7 @@ mark {
 .hero-content > :nth-child(4) { animation-delay: 0.24s; }
 .hero-content > :nth-child(5) { animation-delay: 0.32s; }
 .hero-content > :nth-child(6) { animation-delay: 0.4s; }
+.hero-content > :nth-child(7) { animation-delay: 0.48s; }
 
 .hero-avatar {
   width: 112px;
@@ -462,6 +463,35 @@ mark {
 .hero-meta .icon { color: #ffb3bd; }
 
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.hero-profiles {
+  display: flex;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.profile-btn {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.08);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.profile-btn .icon { width: 20px; height: 20px; }
+.profile-btn:hover {
+  border-color: rgb(255 255 255 / 0.6);
+  background: rgb(255 255 255 / 0.2);
+  transform: translateY(-2px);
+}
+
+.pub-profiles { margin-top: 18px; }
 
 .scroll-cue {
   position: absolute;
